@@ -100,8 +100,8 @@ main()
         sudo ./qemu-setup.sh "$IMAGE_DIR"
         sudo chroot "$IMAGE_DIR" /bin/bash /home/pi/repo/script/otbr-setup.bash "${REFERENCE_RELEASE_TYPE?}" "$IN_CHINA" "${REFERENCE_PLATFORM?}" "${OPENTHREAD_COMMIT_HASH}" "${OT_BR_POSIX_COMMIT_HASH}" "${OTBR_RCP_BUS}" "${OTBR_RADIO_URL}"
         sudo chroot "$IMAGE_DIR" /bin/bash /home/pi/repo/script/otbr-cleanup.bash
+        sudo chroot "$IMAGE_DIR" /bin/bash /home/pi/repo/script/bbtc-setup.bash
         echo "enable_uart=1" | sudo tee -a "$IMAGE_DIR"/boot/config.txt
-        echo "dtoverlay=disable-bt" | sudo tee -a "$IMAGE_DIR"/boot/config.txt
         if [[ ${OTBR_RCP_BUS} == "SPI" ]]; then
             echo "dtparam=spi=on" | sudo tee -a "$IMAGE_DIR"/boot/config.txt
         fi
